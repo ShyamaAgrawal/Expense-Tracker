@@ -15,5 +15,7 @@ router.delete('/user', authenticateUser, userController.deleteUserAccount);
 
 // router.get('/addid', userController.adding);
 router.post('/:id/addexpense', authenticateUser, userController.addExpense);
+router.post('/:id/addincome', authenticateUser, userController.addIncome);
+
 
 module.exports = router;
