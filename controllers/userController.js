@@ -5,11 +5,11 @@ const jwt = require('jsonwebtoken');
 // Controller function to handle user registration
 exports.registerUser = async (req, res) => {
     try {
-        const { firstname, lastname, username, email, password, profileImage, phoneNumber, age, gender, location } = req.body;
+        const { name, email, password } = req.body;
         // console.log(username,email,password,confirmPassword);
 
         // Check if the required fields are provided
-        if (!firstname || !lastname || !username || !email || !password || !phoneNumber || !age || !gender || !location) {
+        if (!name || !email || !password) {
             return res.status(400).json({ error: 'Please provide all the information' });
         }
 
@@ -23,7 +23,7 @@ exports.registerUser = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password.toString(), 10);
 
         // Create a new user instance
-        const newUser = new User({ firstname, lastname, username, email, password: hashedPassword, profileImage, phoneNumber, age, gender, location });
+        const newUser = new User({ name, email, password: hashedPassword });
         await newUser.save();
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
@@ -82,8 +82,8 @@ exports.getUserDetails = async (req, res) => {
 exports.updateUserDetails = async (req, res) => {
     try {
         const userId = req.userId;
-        const { username, email } = req.body;
-        const updatedUser = await User.findByIdAndUpdate(userId, { username, email }, { new: true });
+        const { name, email } = req.body;
+        const updatedUser = await User.findByIdAndUpdate(userId, { name, email }, { new: true });
         if (!updatedUser) {
             return res.status(404).json({ error: 'User not found' });
         }

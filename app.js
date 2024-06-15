@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/Exapanse', {
+mongoose.connect('mongodb://127.0.0.1:27017/Expense', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
