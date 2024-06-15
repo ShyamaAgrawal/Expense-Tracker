@@ -120,3 +120,11 @@ exports.logoutUser = async (req, res) => {
     }
 };
 
+exports.addIncome = async (req,res)=>{
+    try {
+        
+    } catch (error) {
+        
+    }
+};
+
