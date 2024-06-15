@@ -4,7 +4,7 @@ const expenseSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    Category: {
+    category: {
         type: String,
         required: true,
         trim: true
