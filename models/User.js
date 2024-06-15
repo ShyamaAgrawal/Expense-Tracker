@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const Income = require('./Income');
+const Expense = require('./Expense');
 
 // Define the schema
 const userSchema = new mongoose.Schema({
@@ -17,7 +19,14 @@ const userSchema = new mongoose.Schema({
         required: true,
         minlength: 6 
     },
-
+    income: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Income'
+    }],
+    expense: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Expense'
+    }]
 });
 
 // Create the model
