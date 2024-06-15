@@ -121,6 +121,14 @@ exports.logoutUser = async (req, res) => {
     }
 };
 
+exports.addIncome = async (req,res)=>{
+    try {
+        
+    } catch (error) {
+        
+    }
+};
+
 exports.addExpense = async (req,res) => {
     try {
         let { amount, category } = req.body;
