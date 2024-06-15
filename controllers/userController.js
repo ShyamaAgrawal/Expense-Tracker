@@ -1,6 +1,7 @@
 const User = require('../models/User.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const Expense = require('../models/Expense.js');
 
 // Controller function to handle user registration
 exports.registerUser = async (req, res) => {
@@ -120,3 +121,17 @@ exports.logoutUser = async (req, res) => {
     }
 };
 
+exports.addExpense = async (req,res) => {
+    try {
+        let { amount, category } = req.body;
+        if (!amount || !category) {
+            return res.status(400).json({ error: 'Please provide all the information' });
+        }
+        const newExpense = new Expense({amount,category});
+        await newExpense.save();
+        res.status(201).json({ message: 'Expense added successfully' });
+    } catch (error) {
+        console.error('Error adding expense: ', error);
+        res.status(500).json({ error: error.message || 'An error occurred while adding expense' });
+    }
+}
